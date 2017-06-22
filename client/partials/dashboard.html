@@ -1,0 +1,40 @@
+
+<div ng-controller="dashboardController">
+    <p> <b>DashBoard</b>  | <a href="#!/products">Products</a>  | <a href="#!/orders">Orders</a>  |  <a href="#!/customers">Customers</a> </p>
+
+    <div class="products-preview">
+
+        <div class="product" ng-repeat="product in products">
+            <img src="{{product.img_path}}" alt="">
+            <span>{{product.name}}</span>
+            <span>{{product.quantity}}</span>
+        </div>
+
+        <a href="#!/products">show more...</a>
+
+    </div>
+
+    <div class="recent orders top 3">
+        <h4><u>Recent Orders</u></h4>
+        <ul>
+            <li ng-repeat="order in orders">{{order._customer.firstName}} purchased {{order.amount}}{{order._product.name}}</li>
+        </ul>
+
+        <a href="#!/orders">show all orders...</a>
+
+    </div>
+
+    <div class="top 3 new customers">
+
+        <h4><u>New Customers</u></h4>
+        <ul>
+            <li ng-repeat="customer in customers">{{customer.firstName}} {{customer.lastName}} joined the Store on  {{customer.createdAt |  date:'MM, d' }}</li>
+
+        </ul>
+        <a href="#!/customers">show all customers...</a>
+
+    </div>
+
+
+
+</div>

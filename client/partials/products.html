@@ -1,0 +1,58 @@
+<div ng-controller='productsController'>
+
+    <div id="page-div" >
+    <p><a href="#!/">DashBoard</a> |  <b>Products</b>   | <a href="#!/orders">Orders</a>  |  <a href="#!/customers">Customers</a> </p>
+    <div id="filter"><label>Filter: </label><input type="text" ng-model="productFilter"></div>
+    <div id="form-div">
+    
+        <span style="display:block; color:red;"ng-if="productError">{{productError}}</span>
+    
+        <form ng-submit="makeProduct(productObj)" name="newProductForm">
+            <label>Name:</label><br>
+            <input type="text" name="productName" ng-model="productObj.name" minlength="2" required>
+            
+            <div class="inline" ng-messages="newProductForm.productName.$error">
+                <div class="inline" ng-message="required">Required</div>
+                <div  class="inline" ng-message="minlength">At least two characters</div>
+            </div>
+            
+           <br><label >Image (url):</label><br>
+            <input type="text" ng-model="productObj.img_path" name="productImg" required>
+            
+            <div  class="inline" ng-messages="newProductForm.productImg.$error">
+                <div class="inline" ng-message="required">Required</div>
+            </div>
+
+            <br><label> Description: </label><br>
+            <input type="text" ng-model="productObj.description" name="productDescription" required minlength="2">
+
+            <div  class="inline" ng-messages="newProductForm.productDescription.$error">
+                <div class="inline" ng-message="required">Required</div>
+                <div class="inline" ng-message="minlength">At least two characters</div>
+            </div>
+
+           <br> <label>Initial Quantity: </label><br>
+            <select ng-model="productObj.quantity" required name="productQuantity"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option>
+            </select>
+            <div class="inline" ng-messages="newProductForm.productQuantity.$errors">
+                <div class="inline" ng-message="required">Required</div>
+            </div>
+
+
+            <br><br><button type="submit">Create</button>
+        </form>
+    </div>
+
+    <div class="products-section">
+
+        <div ng-repeat="product in products | filter : productFilter" class="product">
+            <img src="{{product.img_path}}" alt="">
+            <p>{{product.name}}</p>
+            <p>({{product.quantity}} left)</p>
+        </div>
+
+
+    </div>
+    </div>
+
+</div>
